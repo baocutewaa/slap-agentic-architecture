@@ -1,0 +1,70 @@
+# Sensitivity analysis configurations
+# Reference: Section 10 of SLAP-agentic-architecture Plan
+
+sensitivity_experiments:
+  S1_location_scope:
+    description: "Evaluate impact of spatial scope selection (z levels)"
+    variations:
+      - name: "z_level_3"
+        z_scope: [3]
+      - name: "z_level_4"
+        z_scope: [4]
+      - name: "z_levels_3_4"
+        z_scope: [3, 4]
+
+  S2_sku_sampling_proxy:
+    description: "Stock frequency vs Customer Order quantity distribution as SKU probability"
+    variations:
+      - name: "stock_frequency"
+        sku_source: "stock_frequency"
+      - name: "demand_order_quantity"
+        sku_source: "order_quantity"
+
+  S3_mixing_index_threshold:
+    description: "Sensitivity to safety mixing index threshold tau"
+    variations:
+      - name: "tau_0_85"
+        tau: 0.85
+      - name: "tau_0_90"
+        tau: 0.90
+      - name: "tau_0_95"
+        tau: 0.95
+
+  S4_random_seeds:
+    description: "Robustness check across 5 independent seeds for capacity release & event stream"
+    seeds: [42, 101, 2024, 7, 999]
+
+  S5_adaptive_reward:
+    description: "Sensitivity to reward definition in adaptive agent"
+    variations:
+      - name: "global_mi_delta"
+        reward_mode: "global_mi_delta"
+      - name: "local_mi_delta"
+        reward_mode: "local_mi_delta"
+
+  S6_operator_supervision:
+    description: "Autonomy with strict auto-approval vs simulated full operator approval"
+    variations:
+      - name: "strict_auto_approve_only"
+        operator_fallback: "pending_manual"
+      - name: "operator_approves_all_feasible"
+        operator_fallback: "always_approve"
+
+  S7_lookahead_split_scope:
+    description: "Check computational approximation error of top-K split lookahead"
+    variations:
+      - name: "top_k_10"
+        top_k_candidates: 10
+      - name: "top_k_25"
+        top_k_candidates: 25
+      - name: "exhaustive_small_stream"
+        top_k_candidates: null
+        num_events: 500
+
+  S8_sku_key_granularity:
+    description: "Reference alone vs (Reference, Size) as discrete SKU key"
+    variations:
+      - name: "sku_reference_only"
+        sku_key: "Reference"
+      - name: "sku_reference_and_size"
+        sku_key: "Reference_Size"

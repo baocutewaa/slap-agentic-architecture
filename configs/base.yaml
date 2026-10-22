@@ -1,0 +1,46 @@
+# Base simulation configuration for SLAP Agentic Architecture
+# Paper: Rodrigo Furlan de Assis et al. (2026), Procedia CIRP 146, 643-648
+
+simulation:
+  seed: 42
+  num_events: 10000
+  initial_release_ratio: 0.20
+  location_capacity: 18
+  z_scope: [3, 4]             # Closest matching subset from dataset (600 locations, size 4-16)
+  sku_key: "Reference"        # Main SKU identifier ('Reference')
+
+paths:
+  raw_data_dir: "data/raw"
+  interim_data_dir: "data/interim"
+  processed_data_dir: "data/processed"
+  outputs_dir: "outputs"
+  logs_dir: "outputs/logs"
+  metrics_dir: "outputs/metrics"
+  figures_dir: "outputs/figures"
+  tables_dir: "outputs/tables"
+
+sampling:
+  sku_source: "stock_frequency"     # 'stock_frequency' (paper) or 'order_quantity' (demand proxy)
+  size_source: "conditional_stock"  # Sample size from observed sizes of SKU in z in [3, 4]
+  quantity_source: "customer_order" # Empirical distribution from Customer_Order.quantity > 0
+
+heuristic:
+  gamma: 0.1                        # Size compatibility bonus coefficient
+  tau: 0.90                         # Mixing index threshold
+  top_k_candidates: 10              # Top-K candidate locations evaluated for split allocation
+
+supervised:
+  gamma: 0.1                        # Same ranking logic as heuristic
+  tau: 0.90
+  top_k_candidates: 10
+  auto_approval_rule: "delta_mi_le_zero"  # Auto-approve if delta_mi <= 0 (or delta_mi == 0)
+  operator_fallback: "pending_manual"     # 'pending_manual' (main run) or 'always_approve' (sensitivity)
+
+adaptive:
+  learning_rate_eta: 0.05           # Paper parameter
+  regularization_lambda: 0.01       # Paper parameter
+  epsilon_exploration: 0.1          # Paper parameter
+  tau: 0.90                         # Mixing index threshold
+  top_k_candidates: 10              # Exploration / candidate evaluation scope
+  reward_mode: "global_mi_delta"    # r_t = global_mi_before - global_mi_after
+  weight_init: "uniform_normalized" # Implementation assumption: uniform normalized weights

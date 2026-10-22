@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+venv/
+env/
+.venv/
+
+# Pytest / Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Plan files
+SLAP-agentic-architecture Plan.md
+*Plan.md
