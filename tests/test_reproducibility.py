@@ -1,10 +1,20 @@
-"""Unit tests for simulation reproducibility.
+"""Unit tests for simulation reproducibility and Phase 3 event generator.
 
-Reference: Section 8.3 of the Plan.
+Reference: Sections 4, 7 (Phase 3), and 8.3 of the Plan.
+Validates:
+- Exact reproducibility of event stream generation with seed=42
+- Inbound event stream schema, size range, positive quantities, sequential IDs
+- 100% SKU membership in Product catalog
+- Determinism of Heuristic decision making
+- Multi-seed divergence and sensitivity stream validity
 """
 
+from pathlib import Path
 import pandas as pd
-from src.data.event_generator import generate_inbound_stream
+import pytest
+
+from src.data.event_generator import generate_inbound_stream, validate_inbound_stream
+from src.data.loaders import load_raw_csv
 from src.agents.heuristic_agent import HeuristicAgent
 from src.model.warehouse_state import WarehouseState
 
@@ -47,3 +57,61 @@ def test_heuristic_determinism():
     assert dec1.status == dec2.status
     assert dec1.selected_allocation.allocations == dec2.selected_allocation.allocations
     assert dec1.delta_mi == dec2.delta_mi
+
+
+def test_phase3_primary_event_stream_integrity():
+    """Verify generated 10,000-event primary stream satisfies all warehouse invariants."""
+    stream_path = Path("data/processed/inbound_events.csv")
+    assert stream_path.exists(), "data/processed/inbound_events.csv does not exist"
+
+    df_events = pd.read_csv(stream_path)
+    assert len(df_events) == 10000
+    assert list(df_events.columns) == ["event_id", "reference", "size", "quantity", "seed"]
+
+    # Sequential event_id from 1 to 10,000
+    assert list(df_events["event_id"]) == list(range(1, 10001))
+    assert df_events["event_id"].nunique() == 10000
+
+    # 100% SKU in Product catalog
+    df_prod = load_raw_csv("Product.csv")
+    valid_refs = set(df_prod["Reference"].astype(str).str.strip())
+    stream_refs = set(df_events["reference"].astype(str).str.strip())
+    assert stream_refs.issubset(valid_refs)
+    assert len(stream_refs) == 208
+
+    # Size range strictly between 4.0 and 16.0
+    assert float(df_events["size"].min()) == 4.0
+    assert float(df_events["size"].max()) == 16.0
+
+    # Positive integer quantities
+    assert (df_events["quantity"] >= 1).all()
+    assert (df_events["quantity"] % 1 == 0).all()
+    assert 1.7 <= df_events["quantity"].mean() <= 2.0
+    assert df_events["quantity"].median() == 1.0
+
+
+def test_phase3_full_scale_reproducibility():
+    """Re-generating 1,000 events with seed=42 produces bit-for-bit identical results."""
+    df_long_z34 = pd.read_csv("data/interim/random_storage_long_z34.csv")
+    df_order = load_raw_csv("Customer_Order.csv")
+
+    stream_a = generate_inbound_stream(df_long_z34, df_order, num_events=1000, seed=42)
+    stream_b = generate_inbound_stream(df_long_z34, df_order, num_events=1000, seed=42)
+
+    pd.testing.assert_frame_equal(stream_a, stream_b)
+
+    # Different seed must produce different stream
+    stream_c = generate_inbound_stream(df_long_z34, df_order, num_events=1000, seed=99)
+    assert not stream_a["reference"].equals(stream_c["reference"])
+
+
+def test_phase3_demand_proxy_stream():
+    """Verify Sensitivity S2 demand-proxy event stream."""
+    stream_path = Path("data/processed/inbound_events_demand_proxy_seed42.csv")
+    assert stream_path.exists()
+
+    df_events = pd.read_csv(stream_path)
+    assert len(df_events) == 10000
+    assert float(df_events["size"].min()) >= 4.0
+    assert float(df_events["size"].max()) <= 16.0
+    assert (df_events["quantity"] >= 1).all()

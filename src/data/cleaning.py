@@ -82,16 +82,59 @@ def clean_random_storage(
 
     long_df = pd.DataFrame(long_records)
 
-    # Attach z coordinate if locations dataframe is provided
+    # Attach coordinates (x, y, z) if locations dataframe is provided
     if df_locations is not None:
         loc_clean = clean_storage_location(df_locations)
-        z_map = loc_clean.set_index("originalLocation")["z"].to_dict()
-        long_df["z"] = long_df["originalLocation"].map(z_map)
+        loc_clean_dedup = loc_clean.drop_duplicates(subset=["originalLocation"])
+        loc_map = loc_clean_dedup.set_index("originalLocation")[["x", "y", "z"]].to_dict(orient="index")
+        
+        long_df["x"] = long_df["originalLocation"].map(lambda l: loc_map.get(l, {}).get("x"))
+        long_df["y"] = long_df["originalLocation"].map(lambda l: loc_map.get(l, {}).get("y"))
+        long_df["z"] = long_df["originalLocation"].map(lambda l: loc_map.get(l, {}).get("z"))
 
         if z_filter is not None:
             long_df = long_df[long_df["z"].isin(z_filter)].copy()
 
     return long_df
+
+
+def save_normalized_snapshots(
+    raw_dir: str = "data/raw",
+    interim_dir: str = "data/interim"
+) -> dict:
+    """Save normalized long-format storage snapshots into interim directory.
+    
+    Generates:
+    - random_storage_long_all.csv (all 2292 locations)
+    - random_storage_long_z34.csv (primary scope: z in {3, 4}, 600 locations)
+    - random_storage_long_z3.csv (sensitivity: z=3, 301 locations)
+    - random_storage_long_z4.csv (sensitivity: z=4, 299 locations)
+    """
+    from pathlib import Path
+    from src.data.loaders import load_raw_csv
+
+    out_path = Path(interim_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
+
+    df_loc = load_raw_csv("Storage_Location.csv", raw_dir=raw_dir)
+    df_rand = load_raw_csv("Random_Storage.csv", raw_dir=raw_dir)
+
+    outputs = {}
+    scopes = {
+        "all": None,
+        "z34": [3, 4],
+        "z3": [3],
+        "z4": [4],
+    }
+
+    for name, z_filter in scopes.items():
+        long_df = clean_random_storage(df_rand, df_locations=df_loc, z_filter=z_filter)
+        file_path = out_path / f"random_storage_long_{name}.csv"
+        long_df.to_csv(file_path, index=False)
+        outputs[name] = file_path
+
+    return outputs
+
 
 
 def clean_customer_order(df: pd.DataFrame) -> pd.DataFrame:

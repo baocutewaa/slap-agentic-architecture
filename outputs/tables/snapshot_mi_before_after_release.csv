@@ -1,0 +1,5 @@
+scope_name,locations_count,capacity_per_location,total_warehouse_capacity,occupied_units_before,free_capacity_before,occupancy_rate_before_pct,baseline_mi_before,critical_locations_before_pct,released_units_count,actual_release_pct,occupied_units_after,free_capacity_after,occupancy_rate_after_pct,initial_mi_after_release,critical_locations_after_pct,delta_mi_due_to_release
+"Candidate Scope (z in {3, 4})",600,18,10800,10800,0,100.0,0.9136,99.83,2160,20.0,8640,2160,80.0,0.9015,98.83,-0.0121
+Sensitivity Scope (z=3),301,18,5418,5418,0,100.0,0.9131,99.67,1084,20.01,4334,1084,79.99,0.9013,99.34,-0.0117
+Sensitivity Scope (z=4),299,18,5382,5382,0,100.0,0.9142,100.0,1076,19.99,4306,1076,80.01,0.9046,99.67,-0.0096
+Full Warehouse (z in {1..4}),2292,18,41256,41256,0,100.0,0.4362,47.69,8251,20.0,33005,8251,80.0,0.43,47.6,-0.0062
