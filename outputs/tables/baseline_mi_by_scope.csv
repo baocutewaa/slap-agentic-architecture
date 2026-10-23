@@ -1,0 +1,7 @@
+scope_name,z_filter,locations_count,total_slots,unique_references,size_min,size_max,average_mi,critical_locations_pct
+"All Levels (z in {1, 2, 3, 4})","1, 2, 3, 4",2292,41256,208,4.0,280.0,0.4362,47.69
+Level z=1,[1],846,15228,208,4.0,235.0,0.2692,29.43
+Level z=2,[2],846,15228,208,4.0,280.0,0.2646,28.96
+Level z=3,[3],301,5418,208,4.0,16.0,0.9131,99.67
+Level z=4,[4],299,5382,208,4.0,16.0,0.9142,100.0
+"Candidate Scope (z in {3, 4})","[3, 4]",600,10800,208,4.0,16.0,0.9136,99.83

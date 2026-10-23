@@ -1,0 +1,10 @@
+filename,rows,columns,file_size_bytes,delimiter,primary_col,unique_primary_col,duplicate_rows,total_nulls
+Storage_Location.csv,2292,5,74664,",",originalLocation,2292,0,0
+Random_Storage.csv,2292,19,452787,",",originalLocation,2292,0,0
+Product.csv,208,3,3977,;,Reference,208,0,0
+Customer_Order.csv,122370,9,9460535,;,codCustomer,588,2559,16
+Picking_Wave.csv,215192,6,9680418,;,waveNumber,9707,102201,0
+Class_Based_Storage.csv,2341,20,576452,;,Location,2341,0,0
+Dedicated_Storage.csv,2340,20,571374,;,Location,2340,0,0
+Hybrid_Storage.csv,2340,20,571422,;,Location,2340,0,0
+Support_Points_Navigation.csv,44,2,1164,;,points_specified,44,0,0

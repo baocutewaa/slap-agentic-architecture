@@ -1,0 +1,6 @@
+Scope,Locations,SKUs,Slots_Per_Loc,Total_Slots,Size_Range,Baseline_MI,Critical_Rate_Pct,Assessment
+"Paper Target (Assis et al., 2026)",847,209,18,15246,4.0 - 16.0,0.918,100.0,Original reported benchmark in paper
+Full Dataset (All z in {1..4}),2292,208,18,41256,4.0 - 280.0,0.4362,47.69,"Mismatched size scale (mm/US) and dedicated zones in z=1,2"
+"Candidate Scope z in {3, 4}",600,208,18,10800,4.0 - 16.0,0.9136,99.83,"RECOMMENDED: Exact size match, baseline MI within 0.48% of paper"
+Sensitivity Scope z=3,301,208,18,5418,4.0 - 16.0,0.9131,99.67,Sub-floor sensitivity analysis
+Sensitivity Scope z=4,299,208,18,5382,4.0 - 16.0,0.9142,100.0,Sub-floor sensitivity analysis

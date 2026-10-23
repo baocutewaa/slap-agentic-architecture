@@ -1,0 +1,4 @@
+policy_filename,total_locations,slots_per_location,extra_locations_vs_random,missing_locations_vs_random,unique_references,extra_references_vs_product,missing_references_vs_product
+Dedicated_Storage.csv,2340,18,48,0,208,0,0
+Hybrid_Storage.csv,2340,18,48,0,208,0,0
+Class_Based_Storage.csv,2341,18,49,0,317,109,0

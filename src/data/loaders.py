@@ -58,3 +58,15 @@ def load_raw_csv(
         # Fallback to latin-1 if utf-8 fails
         df = pd.read_csv(file_path, delimiter=delim, encoding="latin-1", **kwargs)
     return df
+
+
+def load_all_raw_datasets(
+    raw_dir: Union[str, Path] = "data/raw",
+    encoding: str = "utf-8"
+) -> Dict[str, pd.DataFrame]:
+    """Load all 9 warehouse CSV files registered in CSV_DELIMITERS into a dictionary."""
+    datasets: Dict[str, pd.DataFrame] = {}
+    for filename in CSV_DELIMITERS:
+        datasets[filename] = load_raw_csv(filename, raw_dir=raw_dir, encoding=encoding)
+    return datasets
+
