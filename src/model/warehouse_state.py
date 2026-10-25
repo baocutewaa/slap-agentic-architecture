@@ -5,7 +5,7 @@ Supports releasing ~20% initial capacity reproducibly and atomic allocation upda
 Reference: Section 2.1, 4.4, 5.1, and 8.2 of the Plan.
 """
 
-from typing import Dict, List, Optional, Tuple, Set, Any
+from typing import Dict, List, Optional, Tuple, Set, Any, Union
 import numpy as np
 import pandas as pd
 
@@ -145,16 +145,21 @@ class LocationState:
 class WarehouseState:
     """Central representation of the warehouse state across all locations."""
 
-    def __init__(self, capacity_per_location: int = 18):
+    def __init__(self, capacity_per_location: int = 18, scope_name: Optional[str] = None):
         self.capacity_per_location = capacity_per_location
+        self.scope_name = scope_name or "warehouse"
         self.locations: Dict[str, LocationState] = {}
 
     def add_location(
         self,
-        location_id: str,
+        location: Union[str, LocationState],
         coordinates: Optional[Tuple[float, float, float]] = None
     ) -> LocationState:
-        loc_id = str(location_id).strip()
+        if isinstance(location, LocationState):
+            loc_id = location.location_id
+            self.locations[loc_id] = location
+            return location
+        loc_id = str(location).strip()
         loc = LocationState(loc_id, capacity=self.capacity_per_location, coordinates=coordinates)
         self.locations[loc_id] = loc
         return loc
@@ -233,22 +238,65 @@ class WarehouseState:
 
         return released
 
-    def apply_allocation(self, sku: str, size: float, allocations: List[Tuple[str, int]]) -> None:
+    def apply_allocation(
+        self,
+        sku: str,
+        size: float,
+        allocations: Union[Any, List[Tuple[str, int]]],
+        expected_total_qty: Optional[int] = None
+    ) -> bool:
         """Apply an allocation atomically to the warehouse state.
         
-        Rolls back if any location cannot accept the allocation.
+        Guarantees:
+            1. Total allocated units strictly equal expected_total_qty (if provided).
+            2. If any location has insufficient capacity or raises an error, all previously
+               applied items are rolled back immediately, leaving state completely unchanged.
         """
+        alloc_list = allocations.allocations if hasattr(allocations, "allocations") else allocations
+
+        if expected_total_qty is not None:
+            total_alloc = sum(q for _, q in alloc_list)
+            if total_alloc != expected_total_qty:
+                raise ValueError(
+                    f"Allocated quantity ({total_alloc}) does not match expected ({expected_total_qty})"
+                )
+
+        # Pre-check capacity for all target locations before mutation
+        for loc_id, qty in alloc_list:
+            if qty <= 0:
+                raise ValueError(f"Allocation quantity must be positive, got {qty} for {loc_id}")
+            loc = self.get_location(loc_id)
+            if loc.free_capacity < qty:
+                raise ValueError(
+                    f"Insufficient capacity at {loc_id}: required {qty}, available {loc.free_capacity}"
+                )
+
         applied: List[Tuple[str, int]] = []
         try:
-            for loc_id, qty in allocations:
+            for loc_id, qty in alloc_list:
                 loc = self.get_location(loc_id)
                 loc.add_items(sku, size, qty)
                 applied.append((loc_id, qty))
+            return True
         except Exception as e:
-            # Rollback applied partial allocations
+            # Atomic rollback
             for loc_id, qty in applied:
                 self.get_location(loc_id).remove_items(sku, size, qty)
             raise e
+
+    def rollback_allocation(
+        self,
+        sku: str,
+        size: float,
+        allocations: Union[Any, List[Tuple[str, int]]]
+    ) -> bool:
+        """Explicitly undo/rollback an applied allocation."""
+        alloc_list = allocations.allocations if hasattr(allocations, "allocations") else allocations
+        for loc_id, qty in alloc_list:
+            loc = self.get_location(loc_id)
+            loc.remove_items(sku, size, qty)
+        return True
+
 
     def to_location_dataframe(self) -> pd.DataFrame:
         """Export state summary per location to a DataFrame."""

@@ -1,15 +1,18 @@
 """Abstract base agent defining the unified Perception-Decision-Action loop.
 
-Reference: Section 5.2 of the plan.
+Reference: Sections 2.3, 2.4, 2.5, 5.2, and 7 (Phase 5) of the Plan.
 """
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any
 import numpy as np
 
 from src.model.warehouse_state import WarehouseState
-from src.model.allocation import CandidateAllocation, evaluate_single_allocation, evaluate_split_allocation
+from src.model.allocation import (
+    CandidateAllocation,
+    generate_candidate_allocations,
+)
 
 
 @dataclass
@@ -34,12 +37,21 @@ class ActionDecision:
 
 
 class BaseAgent(ABC):
-    """Abstract Base Class for SLAP agents."""
+    """Abstract Base Class for SLAP agents defining the unified Perception-Decision-Action loop."""
 
-    def __init__(self, mode_name: str, tau: float = 0.90, top_k: int = 10):
+    def __init__(
+        self,
+        mode_name: str,
+        tau: float = 0.95,
+        gamma: float = 0.1,
+        top_k: int = 30,
+        allow_split: bool = True
+    ):
         self.mode_name = mode_name
         self.tau = tau
+        self.gamma = gamma
         self.top_k = top_k
+        self.allow_split = allow_split
 
     def generate_candidates(
         self,
@@ -47,54 +59,36 @@ class BaseAgent(ABC):
         sku: str,
         size: float,
         qty: int,
-        gamma: float = 0.1
+        gamma: Optional[float] = None
     ) -> List[CandidateAllocation]:
-        """Generate feasible candidate allocations (both single location and split)."""
-        candidates: List[CandidateAllocation] = []
-
-        # 1. Single allocations
-        candidate_locs = [
-            loc for loc in state.locations.values() if loc.free_capacity >= qty
-        ]
-        for loc in candidate_locs:
-            alloc = evaluate_single_allocation(loc, sku, size, qty, tau=self.tau, gamma=gamma)
-            if alloc is not None:
-                candidates.append(alloc)
-
-        # 2. Split allocations if no single candidate or for lookahead exploration
-        if len(candidates) == 0 and qty > 1:
-            locs_with_space = sorted(
-                [loc for loc in state.locations.values() if loc.free_capacity > 0],
-                key=lambda l: l.free_capacity,
-                reverse=True
-            )[:self.top_k]
-
-            for i in range(len(locs_with_space)):
-                for j in range(i + 1, len(locs_with_space)):
-                    alloc = evaluate_split_allocation(
-                        locs_with_space[i],
-                        locs_with_space[j],
-                        sku,
-                        size,
-                        qty,
-                        tau=self.tau,
-                        gamma=gamma
-                    )
-                    if alloc is not None:
-                        candidates.append(alloc)
-
-        return candidates
+        """Generate and rank all feasible candidate allocations (single & look-ahead split)."""
+        effective_gamma = gamma if gamma is not None else self.gamma
+        return generate_candidate_allocations(
+            state=state,
+            sku=sku,
+            size=size,
+            quantity=qty,
+            tau=self.tau,
+            gamma=effective_gamma,
+            allow_split=self.allow_split,
+            top_k_split=self.top_k
+        )
 
     def apply_action(
         self,
         state: WarehouseState,
         allocation: CandidateAllocation,
         sku: str,
-        size: float
-    ) -> None:
-        """Apply an approved allocation directly to warehouse state."""
-        for loc_id, alloc_qty in allocation.allocations:
-            state.get_location(loc_id).add_items(sku, size, alloc_qty)
+        size: float,
+        expected_qty: Optional[int] = None
+    ) -> bool:
+        """Apply an approved allocation atomically to the warehouse state."""
+        return state.apply_allocation(
+            sku=sku,
+            size=size,
+            allocations=allocation,
+            expected_total_qty=expected_qty
+        )
 
     @abstractmethod
     def process_event(

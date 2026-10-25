@@ -1,0 +1,16 @@
+metric_category,metric_name,value,unit,note
+Dataset Scope,total_raw_files,9.0,files,All 9 CSV datasets in data/raw
+Dataset Scope,total_locations_warehouse,2292.0,locations,Storage_Location.csv
+Candidate Scope,candidate_locations_z34,600.0,locations,"Floors z in {3,4}"
+Candidate Scope,candidate_capacity_slots,10800.0,slots,600 locations * 18 slots
+Catalog Reconciliation,product_catalog_skus,208.0,SKUs,Product.csv
+Catalog Reconciliation,random_storage_skus,208.0,SKUs,Random_Storage.csv
+Catalog Reconciliation,sku_overlap_rate,1.0,ratio,100% exact match
+Catalog Reconciliation,class_based_foreign_skus,109.0,SKUs,SKUs in Class_Based not in Product.csv
+Spatial Integrity,duplicate_coordinate_pairs,1.0,pairs,"K-23-30 and K-23-40 at (102, 810, 3)"
+Baseline MI,candidate_mi_mean,0.9396,index,Paper reported 0.918
+Baseline MI,candidate_mi_std,0.0407,index,"Low variance, high entropy"
+Baseline MI,candidate_mi_median,0.9444,index,High mixing index
+Baseline MI,candidate_critical_pct,99.83,%,Paper reported 100.0%
+Baseline MI,full_warehouse_mi_mean,0.4487,index,Full warehouse (z=1..4)
+Baseline MI,full_warehouse_critical_pct,47.69,%,Diluted by lower floors

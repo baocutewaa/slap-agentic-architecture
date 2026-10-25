@@ -1,0 +1,25 @@
+agent_mode,metric_name,value,unit
+Heuristic,events_processed,50.0,events
+Heuristic,initial_mi,0.9015,index
+Heuristic,final_mi,0.8926,index
+Heuristic,total_delta_mi,0.0089,index
+Heuristic,executed_actions,50.0,actions
+Heuristic,split_actions_count,15.0,actions
+Heuristic,execution_rate_pct,100.0,%
+Heuristic,mean_runtime_ms_per_event,13.54,ms/event
+Supervised (Main),events_processed,50.0,events
+Supervised (Main),initial_mi,0.9015,index
+Supervised (Main),final_mi,0.8926,index
+Supervised (Main),total_delta_mi,0.0089,index
+Supervised (Main),executed_actions,50.0,actions
+Supervised (Main),split_actions_count,15.0,actions
+Supervised (Main),execution_rate_pct,100.0,%
+Supervised (Main),mean_runtime_ms_per_event,14.07,ms/event
+Adaptive,events_processed,50.0,events
+Adaptive,initial_mi,0.9015,index
+Adaptive,final_mi,0.8987,index
+Adaptive,total_delta_mi,0.0028,index
+Adaptive,executed_actions,50.0,actions
+Adaptive,split_actions_count,2.0,actions
+Adaptive,execution_rate_pct,100.0,%
+Adaptive,mean_runtime_ms_per_event,137.49,ms/event

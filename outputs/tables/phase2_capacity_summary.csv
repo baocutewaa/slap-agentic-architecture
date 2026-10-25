@@ -1,0 +1,5 @@
+Scope,Locations,Total_Slots,Occupied_Pre,Occupancy_Rate_Pre_Pct,Released_Slots,Occupied_Post,Free_Slots_Post,Occupancy_Rate_Post_Pct,MI_Pre,MI_Post,Delta_MI
+"Candidate Scope (z in {3,4})",600,10800,10800,100.0,2160,8640,2160,80.0,0.9136,0.9015,-0.0121
+Sensitivity Scope (z=3),301,5418,5418,100.0,1084,4334,1084,80.0,0.9131,0.9013,-0.0117
+Sensitivity Scope (z=4),299,5382,5382,100.0,1076,4306,1076,80.0,0.9142,0.9046,-0.0096
+Full Warehouse (z in {1..4}),2292,41256,41256,100.0,8251,33005,8251,80.0,0.4362,0.43,-0.0062

@@ -1,0 +1,14 @@
+metric_category,metric_name,value,unit,note
+Capacity,candidate_locations,600.0,locations,"Floors z in {3,4}"
+Capacity,total_slot_capacity,10800.0,slots,600 * 18 slots
+Capacity,initial_occupied_slots,10800.0,slots,100% full snapshot
+Capacity Release,target_release_pct,20.0,%,Plan requirement
+Capacity Release,actual_released_slots,2160.0,slots,Exact 20% release with seed=42
+Capacity Release,post_release_occupied,8640.0,slots,Remaining items
+Capacity Release,post_release_free_slots,2160.0,slots,Available capacity for stream
+Capacity Release,mean_free_slots_per_location,3.6,slots/loc,Binomial mean
+Mixing Index,baseline_mi_pre_release,0.9136,index,Paper reference 0.918
+Mixing Index,initial_mi_post_release,0.9015,index,t=0 simulation starting point
+Mixing Index,delta_mi_mean,-0.0121,index,Entropy reduction from evacuation
+Critical Locations,critical_rate_pre_release,99.83,%,Locations with MI > 0.8
+Critical Locations,critical_rate_post_release,98.83,%,Locations with MI > 0.8

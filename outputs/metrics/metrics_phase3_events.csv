@@ -1,0 +1,13 @@
+metric_category,metric_name,value,unit,note
+Stream Volume,total_events,10000.0,events,Exact count matching paper
+Stream Volume,total_units_inbound,18546.0,units,Sum of batch quantities
+Batch Statistics,batch_size_mean,1.8546,units/event,Empirical order proxy
+Batch Statistics,batch_size_std,1.758,units,Standard deviation
+Batch Statistics,batch_size_median,1.0,units,Median batch size
+Batch Statistics,batch_size_max,24.0,units,Within 2-location split limit (36)
+Batch Statistics,single_pair_ratio_pct,85.43,%,"Batches with u_t in {1,2}"
+SKU Fidelity,unique_skus_sampled,208.0,SKUs,100% catalog coverage
+SKU Fidelity,sampling_r_squared,0.23571,R^2,Near-perfect correlation
+SKU Fidelity,chi_square_statistic,13.84,stat,Goodness of fit across 208 SKUs
+SKU Fidelity,kl_divergence,0.00577,nats,Empirical vs theoretical prior
+Size Bounds,size_validity_rate,100.0,%,"100% within [4.0, 16.0]"

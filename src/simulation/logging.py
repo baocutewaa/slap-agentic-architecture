@@ -5,7 +5,7 @@ Reference: Section 5.1 of the plan.
 """
 
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Union
+from typing import List, Dict, Any, Optional, Union, Tuple
 import json
 import pandas as pd
 

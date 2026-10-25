@@ -1,0 +1,4 @@
+Chế độ Agent,Số sự kiện xử lý,Số hành động thực thi,Tỷ lệ thực thi (%),Số lần chia lô (Split),MI ban đầu,MI kết thúc,Độ giảm MI toàn kho,Runtime TB (ms/event)
+Heuristic,50,50,100.0,15,0.9015,0.8926,0.0089,13.54
+Supervised (Main),50,50,100.0,15,0.9015,0.8926,0.0089,14.07
+Adaptive,50,50,100.0,2,0.9015,0.8987,0.0028,137.49

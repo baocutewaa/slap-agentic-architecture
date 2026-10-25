@@ -1,0 +1,7 @@
+Stream_Name,Prior_Source,Seed,Events,Total_Units,Mean_Batch_Size,Max_Batch_Size,Unique_SKUs,Catalog_Coverage_Pct,Size_Range,Validation_Status
+Primary Stream (Stock Frequency),Snapshot Stock Count,42,10000,18546,1.8546,24,208,100.0,4.0 - 16.0,PASSED
+Sensitivity Stream S2 (Demand Proxy),Order Line Frequency,42,10000,18546,1.8546,24,182,87.5,4.0 - 16.0,PASSED
+Sensitivity Stream (Seed 100),Snapshot Stock Count,100,10000,18590,1.859,24,208,100.0,4.0 - 16.0,PASSED
+Sensitivity Stream (Seed 2026),Snapshot Stock Count,2026,10000,18612,1.8612,24,208,100.0,4.0 - 16.0,PASSED
+Sensitivity Stream (Seed 777),Snapshot Stock Count,777,10000,18498,1.8498,24,208,100.0,4.0 - 16.0,PASSED
+Sensitivity Stream (Seed 999),Snapshot Stock Count,999,10000,18530,1.853,24,208,100.0,4.0 - 16.0,PASSED

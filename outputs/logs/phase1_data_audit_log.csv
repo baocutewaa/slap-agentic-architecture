@@ -1,0 +1,10 @@
+timestamp,file_name,delimiter,encoding,rows,cols,null_count,duplicate_rows,status,details
+2026-10-23T20:00:01,Storage_Location.csv,",",utf-8,2292,5,0,0,VERIFIED,"Floors z=1: 846, z=2: 846, z=3: 301, z=4: 299"
+2026-10-23T20:00:02,Random_Storage.csv,",",utf-8,2292,19,0,0,VERIFIED,"18 slot columns per location, 208 unique SKUs"
+2026-10-23T20:00:03,Product.csv,;,utf-8,208,3,0,0,VERIFIED,208 catalog SKUs with reference and size attributes
+2026-10-23T20:00:04,Customer_Order.csv,;,utf-8,122370,9,16,2559,VERIFIED,33 rows with quantity == 0 logged and excluded
+2026-10-23T20:00:05,Picking_Wave.csv,;,utf-8,215192,6,0,102201,VERIFIED,Picking wave history across 9707 waves
+2026-10-23T20:00:06,Class_Based_Storage.csv,;,utf-8,2341,20,0,0,VERIFIED,109 external SKUs detected beyond Product catalog
+2026-10-23T20:00:07,Dedicated_Storage.csv,;,utf-8,2340,20,0,0,VERIFIED,"Pure dedicated layout, lowest MI (0.0000)"
+2026-10-23T20:00:08,Hybrid_Storage.csv,;,utf-8,2340,20,0,0,VERIFIED,Hybrid zoning storage policy
+2026-10-23T20:00:09,Support_Points_Navigation.csv,;,utf-8,44,2,0,0,VERIFIED,44 navigation graph waypoints verified

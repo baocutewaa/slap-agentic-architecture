@@ -1,0 +1,51 @@
+event_id,agent_mode,sku,size,quantity,status,reason,allocations,is_split,mi_before,mi_after,delta_mi,utility,runtime_ms
+1,heuristic,2OAVPY,4.0,1,executed,Heuristic highest score candidate executed.,"[('I-02-40', 1)]",False,0.901505084376408,0.9013788217501453,-0.075758,0.0,10.392700001830235
+2,heuristic,RUUOCB,4.0,1,executed,Heuristic highest score candidate executed.,"[('L-16-30', 1)]",False,0.9013788217501453,0.901261300382624,-0.070513,0.0,10.121500003151596
+3,heuristic,ODZZLY,14.0,2,executed,Heuristic highest score candidate executed.,"[('K-06-30', 1), ('M-14-40', 1)]",True,0.901261300382624,0.9010262576475813,-0.141026,0.0,100.35280000010971
+4,heuristic,2T1DJM,4.0,1,executed,Heuristic highest score candidate executed.,"[('K-10-30', 1)]",False,0.9010262576475813,0.9008898940112176,-0.081818,0.0,7.372599997324869
+5,heuristic,F7LULH,7.0,1,executed,Heuristic highest score candidate executed.,"[('K-23-30', 1)]",False,0.9008898940112176,0.9007636313849549,-0.075758,0.0,7.37920000392478
+6,heuristic,UCRNWD,12.0,1,executed,Heuristic highest score candidate executed.,"[('I-22-30', 1)]",False,0.9007636313849549,0.9006373687586923,-0.075758,0.0,9.216500002366956
+7,heuristic,O7TSVL,13.0,1,executed,Heuristic highest score candidate executed.,"[('P-22-40', 1)]",False,0.9006373687586923,0.9005198473911707,-0.070513,0.0,7.29239999782294
+8,heuristic,Q50W5L,10.0,1,executed,Heuristic highest score candidate executed.,"[('J-23-40', 1)]",False,0.9005198473911707,0.9003834837548073,-0.081818,0.0,12.811199994757771
+9,heuristic,XUZJ74,13.0,1,executed,Heuristic highest score candidate executed.,"[('N-26-40', 1)]",False,0.9003834837548073,0.9002471201184438,-0.081818,0.0,8.985300002677832
+10,heuristic,TAHFOD,11.0,4,executed,Heuristic highest score candidate executed.,"[('D-15-40', 2), ('E-20-30', 2)]",True,0.9002471201184438,0.8997957659170894,-0.270813,0.0,23.91419999912614
+11,heuristic,YXGRMP,14.0,1,executed,Heuristic highest score candidate executed.,"[('C-17-30', 1)]",False,0.8997957659170894,0.899669503290827,-0.075758,0.0,8.218899994972162
+12,heuristic,HOUGRO,6.0,2,executed,Heuristic highest score candidate executed.,"[('D-23-40', 1), ('J-24-40', 1)]",True,0.899669503290827,0.8994156182869418,-0.152331,0.0,20.0842999984161
+13,heuristic,HLOISD,16.0,2,executed,Heuristic highest score candidate executed.,"[('F-23-40', 1), ('H-22-30', 1)]",True,0.8994156182869418,0.8991958380671619,-0.131868,0.0,17.992699999012984
+14,heuristic,1ENECA,15.0,5,executed,Heuristic highest score candidate executed.,"[('K-01-40', 2), ('I-09-40', 3)]",True,0.8991958380671619,0.8986720285433522,-0.314286,0.0,17.140199997811578
+15,heuristic,QM2UH1,13.0,1,executed,Heuristic highest score candidate executed.,"[('B-19-30', 1)]",False,0.8986720285433522,0.8985545071758307,-0.070513,0.0,6.788799997593742
+16,heuristic,5HQR89,5.0,1,executed,Heuristic highest score candidate executed.,"[('F-24-40', 1)]",False,0.8985545071758307,0.898428244549568,-0.075758,0.0,8.802899996226188
+17,heuristic,UMKYTJ,8.0,2,executed,Heuristic highest score candidate executed.,"[('P-01-40', 1), ('O-23-40', 1)]",True,0.898428244549568,0.898184460555784,-0.14627,0.0,21.138500000233762
+18,heuristic,QP56BU,4.0,1,executed,Heuristic highest score candidate executed.,"[('D-24-40', 1)]",False,0.898184460555784,0.8980581979295215,-0.075758,0.0,7.857200005673803
+19,heuristic,XSFSKX,5.0,2,executed,Heuristic highest score candidate executed.,"[('P-21-40', 1), ('Q-23-40', 1)]",True,0.8980581979295215,0.8978043129256367,-0.152331,0.0,22.420400004193652
+20,heuristic,JWTWL1,11.0,1,executed,Heuristic highest score candidate executed.,"[('R-19-40', 1)]",False,0.8978043129256367,0.897686791558115,-0.070513,0.0,11.616600000706967
+21,heuristic,IYLV38,14.0,1,executed,Heuristic highest score candidate executed.,"[('E-13-30', 1)]",False,0.897686791558115,0.897576901448225,-0.065934,0.0,9.410200000274926
+22,heuristic,DNLEH7,6.0,1,executed,Heuristic highest score candidate executed.,"[('I-04-40', 1)]",False,0.897576901448225,0.8973983300196535,-0.107143,0.0,7.547300003352575
+23,heuristic,5P4LRT,5.0,1,executed,Heuristic highest score candidate executed.,"[('D-18-40', 1)]",False,0.8973983300196535,0.8972884399097635,-0.065934,0.0,8.601599998655729
+24,heuristic,1JT1XB,16.0,1,executed,Heuristic highest score candidate executed.,"[('J-20-30', 1)]",False,0.8972884399097635,0.8971785497998735,-0.065934,0.0,8.14449999597855
+25,heuristic,UNPPMJ,7.0,2,executed,Heuristic highest score candidate executed.,"[('K-14-30', 1), ('K-26-30', 1)]",True,0.8971785497998735,0.8969435070648308,-0.141026,0.0,23.41109999542823
+26,heuristic,PC1PMV,4.0,2,executed,Heuristic highest score candidate executed.,"[('C-23-30', 1), ('I-21-40', 1)]",True,0.8969435070648308,0.8967237268450503,-0.131868,0.0,18.109299999196082
+27,heuristic,QVFB0Q,13.0,5,executed,Heuristic highest score candidate executed.,"[('C-22-40', 2), ('E-15-30', 3)]",True,0.8967237268450503,0.8961939233152469,-0.317882,0.0,16.524099999514874
+28,heuristic,B24J86,7.0,1,executed,Heuristic highest score candidate executed.,"[('M-03-40', 1)]",False,0.8961939233152469,0.8960676606889842,-0.075758,0.0,9.069500003533904
+29,heuristic,YE890X,9.0,1,executed,Heuristic highest score candidate executed.,"[('N-09-40', 1)]",False,0.8960676606889842,0.8959501393214631,-0.070513,0.0,8.252399995399173
+30,heuristic,8BSFSA,7.0,1,executed,Heuristic highest score candidate executed.,"[('M-06-40', 1)]",False,0.8959501393214631,0.8958019911733148,-0.088889,0.0,7.680700000491925
+31,heuristic,WH1BJI,4.0,3,executed,Heuristic highest score candidate executed.,"[('M-25-40', 1), ('H-16-40', 2)]",True,0.8958019911733148,0.8954738470951707,-0.196886,0.0,21.51169999706326
+32,heuristic,H51IVV,14.0,1,executed,Heuristic highest score candidate executed.,"[('O-13-40', 1)]",False,0.8954738470951707,0.8953563257276493,-0.070513,0.0,7.636900001671165
+33,heuristic,JCIIEB,6.0,1,executed,Heuristic highest score candidate executed.,"[('C-21-40', 1)]",False,0.8953563257276493,0.8952388043601278,-0.070513,0.0,9.019100005389191
+34,heuristic,YXGRMP,16.0,2,executed,Heuristic highest score candidate executed.,"[('P-09-30', 1), ('P-17-30', 1)]",True,0.8952388043601278,0.8949950203663439,-0.14627,0.0,18.61279999866383
+35,heuristic,QVFB0Q,15.0,2,executed,Heuristic highest score candidate executed.,"[('J-16-40', 1), ('L-21-40', 1)]",True,0.8949950203663439,0.8947752401465637,-0.131868,0.0,19.625300003099255
+36,heuristic,ADT9MG,16.0,2,executed,Heuristic highest score candidate executed.,"[('O-06-30', 2)]",False,0.8947752401465637,0.8945058798772034,-0.161616,0.0,23.00440000544768
+37,heuristic,XUZJ74,5.0,2,executed,Heuristic highest score candidate executed.,"[('N-26-40', 1), ('B-22-30', 1)]",True,0.8945058798772034,0.8942823534036771,-0.134116,0.0,17.680899996776134
+38,heuristic,02MRUH,7.0,1,executed,Heuristic highest score candidate executed.,"[('H-14-30', 1)]",False,0.8942823534036771,0.8941560907774143,-0.075758,0.0,7.053200002701487
+39,heuristic,5HQR89,13.0,1,executed,Heuristic highest score candidate executed.,"[('D-13-30', 1)]",False,0.8941560907774143,0.8940385694098931,-0.070513,0.0,7.073699998727534
+40,heuristic,FQ53YY,5.0,1,executed,Heuristic highest score candidate executed.,"[('M-04-30', 1)]",False,0.8940385694098931,0.8939210480423715,-0.070513,0.0,7.288500004506204
+41,heuristic,RUUOCB,11.0,1,executed,Heuristic highest score candidate executed.,"[('L-23-40', 1)]",False,0.8939210480423715,0.8938111579324816,-0.065934,0.0,7.266299995535519
+42,heuristic,U95NWB,5.0,1,executed,Heuristic highest score candidate executed.,"[('M-06-30', 1)]",False,0.8938111579324816,0.8936936365649601,-0.070513,0.0,7.146399999328423
+43,heuristic,APQKWK,16.0,1,executed,Heuristic highest score candidate executed.,"[('O-02-30', 1)]",False,0.8936936365649601,0.8935800002013237,-0.068182,0.0,7.10840000101598
+44,heuristic,3LQL9L,9.0,1,executed,Heuristic highest score candidate executed.,"[('Q-09-40', 1)]",False,0.8935800002013237,0.8934624788338025,-0.070513,0.0,7.000599995080847
+45,heuristic,U95NWB,9.0,2,executed,Heuristic highest score candidate executed.,"[('N-13-30', 1), ('O-08-40', 1)]",True,0.8934624788338025,0.8932274360987598,-0.141026,0.0,17.02359999762848
+46,heuristic,YMN5EM,7.0,1,executed,Heuristic highest score candidate executed.,"[('D-16-40', 1)]",False,0.8932274360987598,0.8931099147312382,-0.070513,0.0,7.176400002208538
+47,heuristic,V7JUQL,4.0,1,executed,Heuristic highest score candidate executed.,"[('N-20-40', 1)]",False,0.8931099147312382,0.892992393363717,-0.070513,0.0,7.389300000795629
+48,heuristic,FJ25W1,15.0,1,executed,Heuristic highest score candidate executed.,"[('J-23-30', 1)]",False,0.892992393363717,0.8928748719961955,-0.070513,0.0,7.475899998098612
+49,heuristic,8BSFSA,6.0,1,executed,Heuristic highest score candidate executed.,"[('M-06-40', 1)]",False,0.8928748719961955,0.8927536598749836,-0.072727,0.0,7.346799997321796
+50,heuristic,IA7X1P,16.0,1,executed,Heuristic highest score candidate executed.,"[('J-03-30', 1)]",False,0.8927536598749836,0.8926437697650935,-0.065934,0.0,7.118900000932626

@@ -1,0 +1,11 @@
+metric_category,metric_name,value,unit,note
+Top-K Search,candidate_k_chosen,30,candidates,Optimal balance of speed & quality
+Top-K Search,search_space_reduction,99.76,%,"435 pairs vs 179,700 exhaustive pairs"
+Top-K Search,score_optimality_gap,0.0,%,100.0% retains global optimum
+Top-K Search,speedup_factor,413.0,x,Over full exhaustive search
+Integer Partition,integer_partition_complexity,O(q),complexity,"q <= 24, exact optimum in microseconds"
+Integer Partition,split_score_gain_vs_greedy,0.0842,score points,Optimal vs arbitrary division
+Feasibility Filter,default_tau_threshold,0.9,index,Paper default
+Feasibility Filter,mean_feasible_pool_size,471,locations,Out of 600 locations
+Atomic Integrity,rollback_success_rate,100.0,%,Zero state leakage upon rejection
+Atomic Integrity,quantity_conservation_rate,100.0,%,sum(y_l) == u_t invariant
